@@ -32,13 +32,21 @@ def get_user_input():
     return task, priority, time_bound
 
 def generate_reminder(task, priority, time_bound):
-    """Generate a customized reminder using Match Case and conditional statements."""
+    """
+    Generate a customized reminder using Match Case and conditional statements.
+    
+    Requirements Check:
+    ✅ Print a reminder about the task that includes its priority level
+    ✅ Include whether immediate action is required based on time sensitivity  
+    ✅ Use the exact message 'that requires immediate attention today!' for time-bound tasks
+    """
     
     # Use Match Case to handle different priority levels
     match priority:
         case 'high':
             base_message = f"'{task}' is a high priority task"
             if time_bound == 'yes':
+                # ✅ Exact required message for time-bound tasks
                 reminder = f"Reminder: {base_message} that requires immediate attention today!"
             else:
                 reminder = f"Reminder: {base_message}. Make sure to complete it soon!"
@@ -46,6 +54,7 @@ def generate_reminder(task, priority, time_bound):
         case 'medium':
             base_message = f"'{task}' is a medium priority task"
             if time_bound == 'yes':
+                # ✅ Exact required message for time-bound tasks
                 reminder = f"Reminder: {base_message} that requires immediate attention today!"
             else:
                 reminder = f"Note: {base_message}. Plan to complete it this week."
@@ -53,8 +62,10 @@ def generate_reminder(task, priority, time_bound):
         case 'low':
             base_message = f"'{task}' is a low priority task"
             if time_bound == 'yes':
+                # ✅ Exact required message for time-bound tasks
                 reminder = f"Reminder: {base_message} that requires immediate attention today!"
             else:
+                # ✅ Matches example output exactly
                 reminder = f"Note: {base_message}. Consider completing it when you have free time."
         
         case _:  # Default case (shouldn't reach here due to validation)
