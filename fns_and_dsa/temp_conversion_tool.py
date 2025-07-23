@@ -30,3 +30,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# CELSIUS_TO_FAHRENHEIT_FACTOR = 9/5
