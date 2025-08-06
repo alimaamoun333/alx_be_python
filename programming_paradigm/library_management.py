@@ -1,81 +1,75 @@
-class Book:
-    """
-    Represents a single book in the library.
-    title and author are public attributes.
-    _is_checked_out is a private flag tracking availability.
-    """
+# library_management.py
 
-    def __init__(self, title: str, author: str):
+class Book:
+    def __init__(self, title, author):
+        """
+        title: str – the book’s title
+        author: str – the book’s author
+        _is_checked_out: bool – tracks whether the book is currently checked out
+        """
         self.title = title
         self.author = author
         self._is_checked_out = False
 
-    def check_out(self) -> bool:
+    def check_out(self):
         """
-        Mark this book as checked out if it’s currently available.
-        Returns True on success, False if it was already checked out.
+        Marks the book as checked out if it’s available.
+        Returns True if successful, False if it was already checked out.
         """
         if self._is_checked_out:
             return False
         self._is_checked_out = True
         return True
 
-    def return_book(self) -> bool:
+    def return_book(self):
         """
-        Mark this book as returned if it’s currently checked out.
-        Returns True on success, False if it wasn’t checked out.
+        Marks the book as returned if it was checked out.
+        Returns True if successful, False if it wasn’t checked out.
         """
         if not self._is_checked_out:
             return False
         self._is_checked_out = False
         return True
 
-    def is_available(self) -> bool:
-        """
-        True if the book is not checked out.
-        """
-        return not self._is_checked_out
-
 
 class Library:
-    """
-    Manages a collection of Book instances.
-    """
-
     def __init__(self):
-        # _books holds all Book objects in this library
-        self._books: list[Book] = []
-
-    def add_book(self, book: Book) -> None:
         """
-        Add a new Book to the library’s collection.
+        _books: list[Book] – internal collection of Book instances
+        """
+        self._books = []
+
+    def add_book(self, book):
+        """
+        Adds a Book instance to the library’s collection.
         """
         self._books.append(book)
 
-    def check_out_book(self, title: str) -> bool:
+    def check_out_book(self, title):
         """
-        Find the first available book matching `title` and check it out.
-        Returns True if successful, False if no available copy is found.
+        Finds a book by title and attempts to check it out.
+        Returns True if successful, False otherwise.
         """
         for book in self._books:
-            if book.title == title and book.is_available():
+            if book.title == title:
                 return book.check_out()
         return False
 
-    def return_book(self, title: str) -> bool:
+    def return_book(self, title):
         """
-        Find the first checked-out book matching `title` and return it.
-        Returns True if successful, False if no such copy is checked out.
+        Finds a book by title and attempts to return it.
+        Returns True if successful, False otherwise.
         """
         for book in self._books:
-            if book.title == title and not book.is_available():
+            if book.title == title:
                 return book.return_book()
         return False
 
-    def list_available_books(self) -> None:
+    def list_available_books(self):
         """
-        Print all books that are currently not checked out.
+        Prints each book that is not currently checked out,
+        in the format: “Title by Author”.
         """
         for book in self._books:
-            if book.is_available():
+            if not book._is_checked_out:
                 print(f"{book.title} by {book.author}")
