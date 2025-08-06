@@ -36,10 +36,4 @@ class Book:
         Destructor: called when the instance is about to be destroyed.
         Prints a message indicating which book is being deleted.
         """
-    def __str__(self) -> str:
-        return f"{self.title} by {self.author}, published in {self.year}"
-
-    def __repr__(self) -> str:
-         return f"Book('{self.title}', '{self.author}', {self.year})"
-
-    print(f"Deleting {self.title}")
+        print(f"Deleting {self.title}")
