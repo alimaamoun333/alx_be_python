@@ -68,6 +68,13 @@ class TestSimpleCalculator(unittest.TestCase):
         result3 = self.calc.subtract(result2, 5)  # 7
         result4 = self.calc.divide(result3, 7)    # 1.0
         self.assertEqual((result1, result2, result3, result4), (3, 12, 7, 1.0))
+        
+    def test_division(self):
+    # normal division
+    self.assertEqual(self.calc.divide(10, 2), 5)
+    # division by zero
+    self.assertIsNone(self.calc.divide(10, 0))
+    
 
 if __name__ == "__main__":
     unittest.main()
